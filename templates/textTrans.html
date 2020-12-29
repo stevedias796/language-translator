@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tranlaste Text</title>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+
+</head>
+<body>
+    <form action = "text_result" method = "POST">
+        <input type="text" id="result" size="40" name = "result" /></br>
+<br>
+
+         <p><input type = "submit" value = "submit" /></p>
+      </form>
+    <div id="result_text">
+        <p>{{result}}</p>
+    </div>
+<script>
+const text = {{result}};
+if(text.length > 0)
+    responsiveVoice.speak(text, "Hindi Female");
+</script>
+</body>
+</html>
