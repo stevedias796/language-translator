@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <head>
 <title>Speech-To-Text-Converter</title>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
@@ -70,6 +70,9 @@
       </form>
 
 		<script type="text/javascript">
+			
+			const ut = new SpeechSynthesisUtterance('No warning should arise');
+			speechSynthesis.speak(ut);
 			var msg = new SpeechSynthesisUtterance('Hello World');
 			window.speechSynthesis.speak(msg);
 
