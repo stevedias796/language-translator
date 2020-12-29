@@ -1,1 +1,1 @@
-Flask
+web: gunicorn translate:app
