@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-#from googletrans import Translator
 from google_trans_new import google_translator
 
 app = Flask(__name__)
@@ -36,4 +35,4 @@ def result():
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run()
