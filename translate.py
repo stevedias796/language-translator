@@ -1,16 +1,18 @@
 from flask import Flask, render_template, request
+print("-------------------------including libraries--------------------------")
 from google_trans_new import google_translator
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def index():
+    print("**********************************************************************")
     return render_template('index.html')
 
 
 @app.route('/text_translate')
 def text_translate():
+    print("------------------------------------------------------------------------")
     return render_template('textTrans.html', result="")
 
 
