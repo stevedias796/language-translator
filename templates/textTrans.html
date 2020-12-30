@@ -8,6 +8,8 @@
 </head>
 <body>
     <form action = "text_result" method = "POST">
+        <br><br>
+        Enter the text That you want to translate:
         <input type="text" id="result" size="40" name = "result" /></br>
 <br>
 
@@ -17,7 +19,7 @@
         <p>{{result}}</p>
     </div>
 <script>
-const text = {{result}};
+const text = "{{result}}";
 if(text.length > 0)
     responsiveVoice.speak(text, "Hindi Female");
 </script>
