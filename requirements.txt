@@ -5,3 +5,4 @@ jinja2==2.10.1
 MarkupSafe==1.1.1
 Werkzeug==0.15.5
 google-trans-new==1.1.9
+requests==2.24.0
