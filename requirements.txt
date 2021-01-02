@@ -6,3 +6,4 @@ MarkupSafe==1.1.1
 Werkzeug==0.15.5
 google-trans-new==1.1.9
 requests==2.24.0
+twilio==6.50.1
