@@ -5,7 +5,7 @@ import json, requests, random, re
 from urllib.parse import quote
 import urllib3
 import logging
-from .constant import LANGUAGES, DEFAULT_SERVICE_URLS
+from constant import LANGUAGES, DEFAULT_SERVICE_URLS
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
