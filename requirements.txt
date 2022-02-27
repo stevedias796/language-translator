@@ -4,6 +4,6 @@ itsdangerous==1.1.0
 jinja2==2.10.1
 MarkupSafe==1.1.1
 Werkzeug==0.15.5
-google-trans-new==1.1.9
+git+https://github.com/stevedias796/google_trans_new.git
 requests==2.24.0
 twilio==6.50.1
