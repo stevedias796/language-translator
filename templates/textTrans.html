@@ -65,10 +65,10 @@ if(text.length > 0)
           <div class="row gx-5">
             <div class="col">
              <div class="p-3 border bg-light">
-                 <form action = "text_result" method = "POST">
+                 <form name="myForm" action = "text_result" method = "POST">
                      <textarea type="text" id="result" class="form-control" placeholder="Enter the text in English" rows="6" name = "result" ></textarea></br>
                     <br>
-
+                 <p><img src="static/microphone_icon.png" style="width:40px;height:40px;" id="audio_inp"/></p>
                  <p><input type = "submit" class="btn btn-primary" value = "Translate" /></p>
                 </form>
              </div>
@@ -86,6 +86,71 @@ if(text.length > 0)
 const text = "{{result}}";
 if(text.length > 0)
     responsiveVoice.speak(text, "Hindi Female");
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+var grammar = '#JSGF V1.0;'
+
+var recognition = new SpeechRecognition();
+var speechRecognitionList = new SpeechGrammarList();
+speechRecognitionList.addFromString(grammar, 1);
+recognition.grammars = speechRecognitionList;
+recognition.continuous = false;
+recognition.lang = 'en-US';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+    
+var diagnostic = document.getElementById("result");
+
+document.getElementById("audio_inp").onclick = function() {
+recognition.start();
+/*navigator.permissions.query(
+    // { name: 'camera' }
+    { name: 'microphone' }
+    // { name: 'geolocation' }
+    // { name: 'notifications' } 
+    // { name: 'midi', sysex: false }
+    // { name: 'midi', sysex: true }
+    // { name: 'push', userVisibleOnly: true }
+    // { name: 'push' } // without userVisibleOnly isn't supported in chrome M45, yet
+).then(function(permissionStatus){
+
+    console.log(permissionStatus.state); // granted, denied, prompt
+
+    permissionStatus.onchange = function(){
+        console.log("Permission changed to " + this.state);
+    }
+
+})*/
+console.log('Ready to receive a color command.');
+}
+    
+recognition.onresult = function(event) {
+// The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+// The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+// It has a getter so it can be accessed like an array
+// The first [0] returns the SpeechRecognitionResult at the last position.
+// Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+// These also have getters so they can be accessed like arrays.
+// The second [0] returns the SpeechRecognitionAlternative at position 0.
+// We then return the transcript property of the SpeechRecognitionAlternative object
+var recorded_text = event.results[0][0].transcript;
+diagnostic.textContent = recorded_text;
+console.log('Confidence: ' + event.results[0][0].confidence);
+}
+
+recognition.onspeechend = function() {
+recognition.stop();
+document.myForm.submit();
+}
+
+recognition.onnomatch = function(event) {
+diagnostic.textContent = "I didn't recognise that color.";
+}
+
+recognition.onerror = function(event) {
+diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+}
 </script>
 
   </body>
